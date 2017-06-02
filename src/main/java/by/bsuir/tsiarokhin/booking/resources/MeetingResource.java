@@ -3,7 +3,6 @@ package by.bsuir.tsiarokhin.booking.resources;
 import by.bsuir.tsiarokhin.booking.models.Meeting;
 import by.bsuir.tsiarokhin.booking.services.LinkService;
 import by.bsuir.tsiarokhin.booking.services.MeetingService;
-import org.glassfish.jersey.server.Uri;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

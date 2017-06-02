@@ -1,14 +1,13 @@
 package by.bsuir.tsiarokhin.booking.models;
 
-import by.bsuir.tsiarokhin.booking.exceptions.InitializationException;
 import by.bsuir.tsiarokhin.booking.exceptions.MeetingInitializationException;
 import by.bsuir.tsiarokhin.booking.exceptions.WorkingHoursInitializationException;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  * Created by Yauheni Tsiarokhin on 5/30/17.

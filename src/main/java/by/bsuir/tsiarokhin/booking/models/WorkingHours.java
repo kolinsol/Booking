@@ -8,8 +8,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.time.LocalTime;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 /**
  * Created by Yauheni Tsiarokhin on 5/31/17.

@@ -1,6 +1,5 @@
 package by.bsuir.tsiarokhin.booking.services;
 
-import by.bsuir.tsiarokhin.booking.exceptions.InitializationException;
 import by.bsuir.tsiarokhin.booking.exceptions.WorkingHoursInitializationException;
 import by.bsuir.tsiarokhin.booking.models.Meeting;
 import by.bsuir.tsiarokhin.booking.models.Schedule;

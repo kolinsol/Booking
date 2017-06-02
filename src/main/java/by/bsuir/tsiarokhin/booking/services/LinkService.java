@@ -1,8 +1,6 @@
 package by.bsuir.tsiarokhin.booking.services;
 
-import by.bsuir.tsiarokhin.booking.resources.MeetingResource;
 import by.bsuir.tsiarokhin.booking.resources.ScheduleResource;
-import org.glassfish.jersey.server.Uri;
 
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;

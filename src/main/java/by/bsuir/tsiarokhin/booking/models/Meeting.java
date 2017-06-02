@@ -13,7 +13,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Set;
 
 /**
  * Created by Yauheni Tsiarokhin on 5/30/17.
@@ -73,6 +72,11 @@ public class Meeting implements Comparable<Meeting> {
         return employeeId;
     }
 
+    /**
+     * Sorts Meeting entities depending on
+     * 1) submissionTime (doesn't let to add two meetings submitted at the same moment
+     * 2) startTime and endTime (doesn't let to add overlapping meeting)
+     */
     @Override
     public int compareTo(Meeting o) {
         if (submissionTime.equals(o.submissionTime)) return 0;
