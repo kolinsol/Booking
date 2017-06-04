@@ -5,9 +5,9 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        TestMeetingIsOvertime.class,
-        TestMeetingIsValid.class,
-        TestWorkingHoursIsValid.class
+        TestMeeting.class,
+        TestSchedule.class,
+        TestWorkingHours.class
 })
 public class TestPrimer {
 }

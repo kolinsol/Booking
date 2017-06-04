@@ -21,11 +21,6 @@ public class MeetingService {
 
     public Map<String, Set<Meeting>> getMeetings() {
         Map<String, Set<Meeting>> meetings = schedule.getMeetings();
-        if (meetings.isEmpty()) {
-            return null;
-        } else {
-            return meetings;
-        }
-
+        return (meetings.isEmpty()) ? null : meetings;
     }
 }

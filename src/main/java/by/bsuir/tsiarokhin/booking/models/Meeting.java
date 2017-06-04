@@ -87,14 +87,8 @@ public class Meeting implements Comparable<Meeting> {
                 && getSubmissionTime().isBefore(LocalDateTime.now());
     }
 
-    /**
-     * Sorts Meeting entities depending on
-     * 1) submissionTime (doesn't let to add two meetings submitted at the same moment
-     * 2) startTime and endTime (doesn't let to add overlapping meeting)
-     */
     @Override
     public int compareTo(Meeting o) {
-        if (submissionTime.equals(o.submissionTime)) return 0;
         if (startTime.isAfter(o.endTime) || startTime.equals(o.endTime)) return 1;
         if (endTime.isBefore(o.startTime) || endTime.equals(o.startTime)) return -1;
         return 0;
@@ -107,7 +101,6 @@ public class Meeting implements Comparable<Meeting> {
 
         Meeting meeting = (Meeting) o;
 
-        if (submissionTime.equals(meeting.submissionTime)) return true;
         if (!submissionTime.equals(meeting.submissionTime)) return false;
         if (!meetingDate.equals(meeting.meetingDate)) return false;
         if (!startTime.equals(meeting.startTime)) return false;

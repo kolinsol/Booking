@@ -12,9 +12,11 @@ public class Schedule {
 
     private WorkingHours workingHours;
     private Map<String, Set<Meeting>> meetings;
+    private Set<LocalDateTime> submissionTimes;
 
     private Schedule() {
         meetings = new TreeMap<>();
+        submissionTimes = new HashSet<>();
     }
 
     public static Schedule getInstance() {
@@ -44,13 +46,16 @@ public class Schedule {
 
     public void addMeetings(List<Meeting> meetingsToAdd) {
         for (Meeting meeting: meetingsToAdd) {
-            String meetingDate = meeting.getMeetingDate().toString();
-            if (meeting.isValid() && !meeting.isOvertime(workingHours)) {
-                if (meetings.containsKey(meetingDate)) {
-                    meetings.get(meetingDate).add(meeting);
-                } else {
-                    meetings.put(meetingDate, new TreeSet<>());
-                    meetings.get(meetingDate).add(meeting);
+            if (!submissionTimes.contains(meeting.getSubmissionTime())) {
+                submissionTimes.add(meeting.getSubmissionTime());
+                String meetingDate = meeting.getMeetingDate().toString();
+                if (meeting.isValid() && !meeting.isOvertime(workingHours)) {
+                    if (meetings.containsKey(meetingDate)) {
+                        meetings.get(meetingDate).add(meeting);
+                    } else {
+                        meetings.put(meetingDate, new TreeSet<>());
+                        meetings.get(meetingDate).add(meeting);
+                    }
                 }
             }
         }
