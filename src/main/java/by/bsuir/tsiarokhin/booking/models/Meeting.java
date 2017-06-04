@@ -73,6 +73,20 @@ public class Meeting implements Comparable<Meeting> {
         return employeeId;
     }
 
+    public Boolean isOvertime(WorkingHours workingHours) {
+        return getStartTime().isBefore(workingHours.getOpeningTime())
+                || getEndTime().isAfter(workingHours.getClosingTime())
+                || getStartTime().isAfter(workingHours.getClosingTime())
+                || getEndTime().isBefore(workingHours.getOpeningTime());
+    }
+
+    @JsonIgnore
+    public Boolean isValid() {
+        return LocalDateTime.of(getMeetingDate(), getStartTime()).isAfter(LocalDateTime.now())
+                && getEndTime().isAfter(getStartTime())
+                && getSubmissionTime().isBefore(LocalDateTime.now());
+    }
+
     /**
      * Sorts Meeting entities depending on
      * 1) submissionTime (doesn't let to add two meetings submitted at the same moment

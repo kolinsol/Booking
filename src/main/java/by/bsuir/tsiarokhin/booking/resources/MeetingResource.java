@@ -4,6 +4,8 @@ import by.bsuir.tsiarokhin.booking.models.Meeting;
 import by.bsuir.tsiarokhin.booking.services.LinkService;
 import by.bsuir.tsiarokhin.booking.services.MeetingService;
 
+import javax.inject.Inject;
+import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;

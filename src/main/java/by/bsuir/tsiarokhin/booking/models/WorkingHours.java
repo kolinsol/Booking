@@ -4,6 +4,7 @@ import by.bsuir.tsiarokhin.booking.deserializers.TimeDeserializer;
 import by.bsuir.tsiarokhin.booking.serializers.TimeSerializer;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -33,5 +34,10 @@ public class WorkingHours {
 
     public LocalTime getClosingTime() {
         return closingTime;
+    }
+
+    @JsonIgnore
+    public Boolean isValid() {
+        return getClosingTime().isAfter(getOpeningTime());
     }
 }
