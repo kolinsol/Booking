@@ -14,7 +14,8 @@ First of all you need to initialize office’s working hours with two parameters
 
 To do that make POST request to (/schedule/workinghours) URI.
 
-After that you can start adding meetings with specified parameters:
+After that you can start adding batches of meetings with specified parameters:
+	submission time (submissionTime)
 	meeting date (meetingDate)	
 	start time (startTime)
 	duration (duration)

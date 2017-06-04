@@ -7,9 +7,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-/**
- * Created by Yauheni Tsiarokhin on 6/1/17.
- */
 @Provider
 public class WebApplicationExceptionMapper implements ExceptionMapper<WebApplicationException> {
 

@@ -5,9 +5,6 @@ import by.bsuir.tsiarokhin.booking.resources.ScheduleResource;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 
-/**
- * Created by Yauheni Tsiarokhin on 6/1/17.
- */
 public class LinkService {
 
     public static final String SELF = "self";

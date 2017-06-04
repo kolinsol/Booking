@@ -1,8 +1,5 @@
 package by.bsuir.tsiarokhin.booking.exceptions;
 
-/**
- * Created by Yauheni Tsiarokhin on 6/1/17.
- */
 public class WorkingHoursInitializationException extends InitializationException {
 
     public static final String NOT_INITIALIZED = "Working hours are not initialized";

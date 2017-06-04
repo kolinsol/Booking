@@ -1,8 +1,5 @@
 package by.bsuir.tsiarokhin.booking.exceptions;
 
-/**
- * Created by Yauheni Tsiarokhin on 6/1/17.
- */
 public class MeetingInitializationException extends InitializationException {
 
     public static final String OVERLAP = "Meetings are overlapping";

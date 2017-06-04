@@ -4,15 +4,15 @@ import by.bsuir.tsiarokhin.booking.models.WorkingHours;
 import by.bsuir.tsiarokhin.booking.services.LinkService;
 import by.bsuir.tsiarokhin.booking.services.WorkingHoursService;
 
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-/**
- * Created by Yauheni Tsiarokhin on 5/31/17.
- */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class WorkingHoursResource {

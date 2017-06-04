@@ -1,8 +1,10 @@
 package by.bsuir.tsiarokhin.booking.models;
 
 import by.bsuir.tsiarokhin.booking.deserializers.DateDeserializer;
+import by.bsuir.tsiarokhin.booking.deserializers.DateTimeDeserializer;
 import by.bsuir.tsiarokhin.booking.deserializers.TimeDeserializer;
 import by.bsuir.tsiarokhin.booking.serializers.TimeSerializer;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,15 +16,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-/**
- * Created by Yauheni Tsiarokhin on 5/30/17.
- */
 @JsonPropertyOrder({
         "startTime",
         "endTime",
         "employeeId"})
 public class Meeting implements Comparable<Meeting> {
 
+    @JsonDeserialize(using = DateTimeDeserializer.class)
     private LocalDateTime submissionTime;
 
     @JsonDeserialize(using = DateDeserializer.class)
@@ -39,11 +39,12 @@ public class Meeting implements Comparable<Meeting> {
     private String employeeId;
 
     @JsonCreator
-    public Meeting(@JsonProperty("meetingDate") LocalDate meetingDate,
+    public Meeting(@JsonProperty("submissionDate") LocalDateTime submissionTime,
+                   @JsonProperty("meetingDate") LocalDate meetingDate,
                    @JsonProperty("startTime") LocalTime startTime,
                    @JsonProperty("duration") Integer duration,
                    @JsonProperty("employeeId") String employeeId) {
-        this.submissionTime = LocalDateTime.now();
+        this.submissionTime = submissionTime;
         this.meetingDate = meetingDate;
         this.startTime = startTime;
         this.endTime = startTime.plusHours(duration);
@@ -92,6 +93,7 @@ public class Meeting implements Comparable<Meeting> {
 
         Meeting meeting = (Meeting) o;
 
+        if (submissionTime.equals(meeting.submissionTime)) return true;
         if (!submissionTime.equals(meeting.submissionTime)) return false;
         if (!meetingDate.equals(meeting.meetingDate)) return false;
         if (!startTime.equals(meeting.startTime)) return false;
@@ -107,5 +109,16 @@ public class Meeting implements Comparable<Meeting> {
         result = 31 * result + endTime.hashCode();
         result = 31 * result + employeeId.hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Meeting{" +
+                "submissionTime=" + submissionTime +
+                ", meetingDate=" + meetingDate +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", employeeId='" + employeeId + '\'' +
+                '}';
     }
 }

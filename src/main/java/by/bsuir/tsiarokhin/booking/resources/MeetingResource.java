@@ -12,17 +12,15 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Created by Yauheni Tsiarokhin on 5/30/17.
- */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class MeetingResource {
 
-    private MeetingService meetingService =new MeetingService();
+    private MeetingService meetingService = new MeetingService();
     private LinkService linkService = new LinkService();
 
     @GET
@@ -38,9 +36,10 @@ public class MeetingResource {
     }
 
     @POST
-    public Response postMeeting(Meeting meeting) {
-            return Response.status(Response.Status.CREATED)
-                    .entity(meetingService.postMeeting(meeting))
-                    .build();
+    public Response postMeetings(List<Meeting> meetings) {
+        meetingService.postMeetings(meetings);
+        System.out.println(meetings);
+        return Response.status(Response.Status.CREATED)
+                .build();
     }
 }

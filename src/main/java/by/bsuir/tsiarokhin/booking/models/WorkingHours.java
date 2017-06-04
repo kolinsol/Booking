@@ -2,6 +2,7 @@ package by.bsuir.tsiarokhin.booking.models;
 
 import by.bsuir.tsiarokhin.booking.deserializers.TimeDeserializer;
 import by.bsuir.tsiarokhin.booking.serializers.TimeSerializer;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -9,9 +10,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.time.LocalTime;
 
-/**
- * Created by Yauheni Tsiarokhin on 5/31/17.
- */
 public class WorkingHours {
 
     @JsonSerialize(using = TimeSerializer.class)

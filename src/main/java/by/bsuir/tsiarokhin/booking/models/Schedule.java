@@ -4,14 +4,8 @@ import by.bsuir.tsiarokhin.booking.exceptions.MeetingInitializationException;
 import by.bsuir.tsiarokhin.booking.exceptions.WorkingHoursInitializationException;
 
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
-/**
- * Created by Yauheni Tsiarokhin on 5/30/17.
- */
 public class Schedule {
 
     private static Schedule instance = new Schedule();
@@ -49,42 +43,30 @@ public class Schedule {
         return meetings;
     }
 
-    public Meeting addMeeting(Meeting meeting) {
-        String meetingDate = meeting.getMeetingDate().toString();
-        if (isValid(meeting) && !isOvertime(meeting)) {
-            if (meetings.containsKey(meetingDate)) {
-                if (meetings.get(meetingDate).add(meeting)) {
-                    return meeting;
+    public void addMeetings(List<Meeting> meetingsToAdd) {
+        for (Meeting meeting: meetingsToAdd) {
+            String meetingDate = meeting.getMeetingDate().toString();
+            if (isValid(meeting) && !isOvertime(meeting)) {
+                if (meetings.containsKey(meetingDate)) {
+                    meetings.get(meetingDate).add(meeting);
                 } else {
-                    throw new MeetingInitializationException(MeetingInitializationException.OVERLAP);
+                    meetings.put(meetingDate, new TreeSet<>());
+                    meetings.get(meetingDate).add(meeting);
                 }
-            } else {
-                meetings.put(meetingDate, new TreeSet<>());
-                if (meetings.get(meetingDate).add(meeting)) {
-                    return meeting;
-                };
             }
         }
-        return null;
     }
 
     private Boolean isOvertime(Meeting meeting) {
-        Boolean result =  meeting.getStartTime().isBefore(workingHours.getOpeningTime())
+        return meeting.getStartTime().isBefore(workingHours.getOpeningTime())
                 || meeting.getEndTime().isAfter(workingHours.getClosingTime());
-        if (result) {
-            throw new MeetingInitializationException(MeetingInitializationException.OVERTIME);
-        } else {
-            return result;
-        }
     }
 
     private Boolean isValid(Meeting meeting) {
-        Boolean result = LocalDateTime.of(meeting.getMeetingDate(), meeting.getStartTime()).isAfter(LocalDateTime.now())
-                && meeting.getEndTime().isAfter(meeting.getStartTime());
-        if (!result) {
-            throw new MeetingInitializationException(MeetingInitializationException.INVALID);
-        } else {
-            return result;
-        }
+        return LocalDateTime.of(meeting.getMeetingDate(), meeting.getStartTime()).isAfter(LocalDateTime.now())
+                && meeting.getEndTime().isAfter(meeting.getStartTime())
+                && meeting.getSubmissionTime().isBefore(LocalDateTime.now())
+                && meeting.getSubmissionTime()
+                .isBefore(LocalDateTime.of(meeting.getMeetingDate(), meeting.getStartTime()));
     }
 }
