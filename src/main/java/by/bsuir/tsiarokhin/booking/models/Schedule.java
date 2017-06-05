@@ -12,6 +12,10 @@ public class Schedule {
 
     private WorkingHours workingHours;
     private Map<String, Set<Meeting>> meetings;
+    /*
+     * The purpose of this field is to register all the submission times of the meetings.
+     * So there are no meetings in the schedule
+     */
     private Set<LocalDateTime> submissionTimes;
 
     private Schedule() {

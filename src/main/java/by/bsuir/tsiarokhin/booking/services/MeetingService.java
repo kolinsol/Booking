@@ -4,6 +4,7 @@ import by.bsuir.tsiarokhin.booking.exceptions.WorkingHoursInitializationExceptio
 import by.bsuir.tsiarokhin.booking.models.Meeting;
 import by.bsuir.tsiarokhin.booking.models.Schedule;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,6 +17,10 @@ public class MeetingService {
         if (schedule.getWorkingHours() == null) {
             throw new WorkingHoursInitializationException(WorkingHoursInitializationException.NOT_INITIALIZED);
         }
+        /*
+         * Sorting meetings by submission time.
+         */
+        meetings.sort(Comparator.comparing(Meeting::getSubmissionTime));
         schedule.addMeetings(meetings);
     }
 

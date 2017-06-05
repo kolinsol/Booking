@@ -117,15 +117,4 @@ public class Meeting implements Comparable<Meeting> {
         result = 31 * result + employeeId.hashCode();
         return result;
     }
-
-    @Override
-    public String toString() {
-        return "Meeting{" +
-                "submissionTime=" + submissionTime +
-                ", meetingDate=" + meetingDate +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", employeeId='" + employeeId + '\'' +
-                '}';
-    }
 }
